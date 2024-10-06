@@ -25,21 +25,21 @@ const images = [
   }
 ];
 
-const globalList = document.querySelector(".gallery")
-const img = images.map(listGal => {
-  const item = document.createElement("li");
-  globalList.append(item);
-  const img = document.createElement("img");
-  item.append(img);
-  img.setAttribute("src", listGal.url);
-  img.setAttribute("alt", listGal.alt);
-  img.classList.add("img-gla");
-  img.style.width = "360px";
-  img.style.height = "300px";
-  item.style.listStyleType = "none";
-  globalList.style.whidth = "1128px";
-  globalList.style.display = "flex";
-  globalList.style.justifyContent = "center";
-  globalList.style.flexWrap = "wrap";
-  globalList.style.gap = "20px";
-})
+const globalList = document.querySelector(".gallery");
+
+const galleryHTML = images.map(listGal => {
+  return `
+    <li style="list-style-type: none;">
+      <img src="${listGal.url}" alt="${listGal.alt}" class="img-gla" style="width: 360px; height: 300px;">
+    </li>
+  `;
+}).join('');
+
+globalList.insertAdjacentHTML('beforeend', galleryHTML);
+
+globalList.style.width = "1128px";
+globalList.style.padding = "0";
+globalList.style.display = "flex";
+globalList.style.justifyContent = "center";
+globalList.style.flexWrap = "wrap";
+globalList.style.gap = "20px";
